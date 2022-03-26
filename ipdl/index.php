@@ -17,6 +17,9 @@ if (isset($_SESSION['username'])){
     $nom=$row["nom"] ;
     $email=$row["email"] ;
     }
+
+    
+    
                                         
     
 }
@@ -226,92 +229,65 @@ if (isset($_SESSION['username'])){
                         </div>
                        
             
-                        <div class="row">
-                            <div class="col-lg-9">
-                                <h2 class="title-1 m-b-25">COURS</h2>
-                                <div class="table-responsive table--no-card m-b-40">
-                                    <table class="table table-borderless table-striped table-earning">
-                                        <thead>
-                                            <tr>
-                                                <th>date</th>
-                                                <th>order ID</th>
-                                                <th>name</th>
-                                                <th class="text-right">price</th>
-                                                <th class="text-right">quantity</th>
-                                                <th class="text-right">total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100398</td>
-                                                <td>iPhone X 64Gb Grey</td>
-                                                <td class="text-right">$999.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$999.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-28 01:22</td>
-                                                <td>100397</td>
-                                                <td>Samsung S8 Black</td>
-                                                <td class="text-right">$756.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$756.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-27 02:12</td>
-                                                <td>100396</td>
-                                                <td>Game Console Controller</td>
-                                                <td class="text-right">$22.00</td>
-                                                <td class="text-right">2</td>
-                                                <td class="text-right">$44.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-26 23:06</td>
-                                                <td>100395</td>
-                                                <td>iPhone X 256Gb Black</td>
-                                                <td class="text-right">$1199.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$1199.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-25 19:03</td>
-                                                <td>100393</td>
-                                                <td>USB 3.0 Cable</td>
-                                                <td class="text-right">$10.00</td>
-                                                <td class="text-right">3</td>
-                                                <td class="text-right">$30.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100392</td>
-                                                <td>Smartwatch 4.0 LTE Wifi</td>
-                                                <td class="text-right">$199.00</td>
-                                                <td class="text-right">6</td>
-                                                <td class="text-right">$1494.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-24 19:10</td>
-                                                <td>100391</td>
-                                                <td>Camera C430W 4k</td>
-                                                <td class="text-right">$699.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$699.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-22 00:43</td>
-                                                <td>100393</td>
-                                                <td>USB 3.0 Cable</td>
-                                                <td class="text-right">$10.00</td>
-                                                <td class="text-right">3</td>
-                                                <td class="text-right">$30.00</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                       
+
+                            <?php
+$link = mysqli_connect("localhost", "root", "", "ipdl");
+  
+if($link === false){
+    die("ERROR: Could not connect. " 
+                . mysqli_connect_error());
+}
+    $sql = "SELECT ID_cours,nom,date_debut,date_fin,volumeHoraire,volumeHoraireRestant FROM `cours`";
+  
+if($res = mysqli_query($link, $sql)){
+    if(mysqli_num_rows($res) > 0){
+        echo                    "<div class='row'>";
+        echo                    "<div class='col-lg-9'>";
+        echo                    "<h2 class='title-1 m-b-25'>COURS</h2>";
+        echo                    "<div class='table-responsive table--no-card m-b-40'>";
+        echo "<table class='table table-borderless table-striped table-earning'>";
+                   echo                     "<thead>";
+
+            echo "<tr>";
+            echo "<th>ID_cours</th>";
+            echo "<th>nom</th>";
+            echo "<th>date_debut</th>";
+            echo "<th class='text-right'>date_fin</th>";
+            echo "<th class='text-right'>volumeHoraire</th>";
+            echo "<th class='text-right'>volumeHoraireRestant</th>";
+            echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
+        while($row = mysqli_fetch_array($res)){
+            echo "<tr>";
+                echo "<td>" . $row['ID_cours'] . "</td>";
+                echo "<td>" . $row['nom'] . "</td>";
+                echo "<td>" . $row['date_debut'] . "</td>";
+                echo "<td class='text-right'>" . $row['date_fin'] . "</td>";
+                echo "<td class='text-right'>" . $row['volumeHoraire'] . "</td>";
+                echo "<td class='text-right'>" . $row['volumeHoraireRestant'] . "</td>";
+            echo "</tr>";
+        }
+                    echo "</tbody>";
+                    echo "</table>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+        mysqli_free_result($res);
+    } else{
+        echo "No matching records are found.";
+    }
+} else{
+    echo "ERROR: Could not able to execute $sql. "
+                                . mysqli_error($link);
+}
+mysqli_close($link);
+
+
+?>
                           
-                        </div>
+                    
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
