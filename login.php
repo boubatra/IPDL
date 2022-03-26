@@ -13,7 +13,7 @@ if (isset($_POST['username'])){
 	$_SESSION['username'] = $username;
 	
     $query = "SELECT * FROM `utilisateur` WHERE username='$username'";
-	$result = mysqli_query($conn,$query) or die(mysql_error());
+	$result = mysqli_query($conn,$query) or die(mysqli_error());
 	
 	if (mysqli_num_rows($result) == 1) {
 		$user = mysqli_fetch_assoc($result);
