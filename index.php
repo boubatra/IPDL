@@ -21,12 +21,12 @@ if (isset($_SESSION['username'])){
 	
 	
     $query = "SELECT prenom,nom FROM utilisateur WHERE username='$username' ";
-    $query2 = "SELECT volume,volumeRestant FROM `horaire`";
+    $query2 = "SELECT volumeHoraire,volumeHoraireRestant FROM `cours`";
 	$result = $conn->query($query);
 	$result2 = $conn->query($query2);
 	while($row = $result2->fetch_assoc()) {
-    									$volume=$row["volume"] ;
-    									$volumeRestant=$row["volumeRestant"] ;
+    									$volumeHoraire=$row["volumeHoraire"] ;
+    									$volumeHoraireRestant=$row["volumeHoraireRestant"] ;
 					  					}
 
 					  					
@@ -213,7 +213,7 @@ mysqli_close($link);
 								  	<h2>
 								  		<?php
 										
-    									echo $volume ;
+    									echo $volumeHoraire ;
 					  					
 										?>
 								  	</h2>
@@ -225,7 +225,7 @@ mysqli_close($link);
 								  	<h2>
 								  		<?php
 										
-    									echo $volumeRestant ;
+    									echo $volumeHoraireRestant ;
 					  					
 										?>
 								  	</h2>
