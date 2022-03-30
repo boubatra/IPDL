@@ -14,6 +14,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
     // pour éliminer toute attaque de type injection SQL et XSS
     $username = mysqli_real_escape_string($db,htmlspecialchars($_POST['username'])); 
     $password = mysqli_real_escape_string($db,htmlspecialchars($_POST['password']));
+    $profil = mysqli_real_escape_string($db,htmlspecialchars($_POST['profil']));
     
     if($username !== "" && $password !== "")
     {
@@ -24,8 +25,34 @@ if(isset($_POST['username']) && isset($_POST['password']))
         $count = $reponse['count(*)'];
         if($count!=0) // nom d'utilisateur et mot de passe correctes
         {
-           $_SESSION['username'] = $username;
-           header('Location: principale.php');
+            if ($profil=='admin')
+             {
+               $_SESSION['username'] = $username;
+               $_SESSION['profil'] = $profil;
+               header('Location: ../Admin/dash_admin.php');
+             }
+            else if ($profil=='professeur')
+             {
+               $_SESSION['username'] = $username;
+               $_SESSION['profil'] = $profil;
+               header('Location: ../Professeur/dash_prof.php');
+             }
+             else if ($profil=='etudiant')
+             {
+                $_SESSION['username'] = $username;
+                $_SESSION['profil'] = $profil;
+                header('Location: ../Etudiant/dash_etu.php');
+             }
+             else if ($profil=='surveillant')
+             {
+                $_SESSION['username'] = $username;
+                $_SESSION['profil'] = $profil;
+                header('Location: ../Surveillant/dash_surv.php');
+             }
+             else
+            {
+               echo 'Profils non reconnu';
+            }
         }
         else
         {
