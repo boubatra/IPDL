@@ -13,7 +13,7 @@ if (isset($_POST['username'])) {
         $user = mysqli_fetch_assoc($result);
         // vérifier si l'utilisateur est un administrateur ou un utilisateur
         if ($user['admin'] == 1) {
-            header("Location: admin.php");
+            header("Location: admin/index.php");
         }
         
         if ($user['admin'] == 0) {
