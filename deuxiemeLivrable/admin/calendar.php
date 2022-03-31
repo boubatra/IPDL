@@ -233,7 +233,7 @@ if (isset($_SESSION['username'])){
                                                
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="logout.php">
+                                                <a href="../logout.php">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
