@@ -201,6 +201,11 @@ mysqli_close($link);
 					</div>
 
 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 					<div class="tab-pane fade" id="pointage" role="tabpanel" aria-labelledby="pointage-tab">

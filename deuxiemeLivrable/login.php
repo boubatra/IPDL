@@ -12,10 +12,10 @@ if (isset($_POST['username'])) {
     if (mysqli_num_rows($result) == 1) {
         $user = mysqli_fetch_assoc($result);
         // vérifier si l'utilisateur est un administrateur ou un utilisateur
-       if ($user['profile'] == "admin") {
+        if ($user['profile'] == "admin") {
             header("Location: admin/index.php");
         }
-        
+
         if ($user['profile'] != "admin") {
 
             header('location: index.php');
@@ -59,6 +59,14 @@ if (isset($_POST['username'])) {
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
+    <style type="text/css">
+        body {
+            background-image: url("images/bg-01.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 
 </head>
 

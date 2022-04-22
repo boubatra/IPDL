@@ -2,24 +2,25 @@
 session_start();
 require('config.php');
 
-if (isset($_SESSION['username'])){
-    $username =$_SESSION['username'];
-    
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
 
-    
-    
+
+
+
     $query = "SELECT prenom,nom,email FROM utilisateur WHERE username='$username' ";
-  
+
     $result = $conn->query($query);
-    
-    while($row = $result->fetch_assoc()) {
-    $prenom= $row["prenom"];
-    $nom=$row["nom"] ;
-    $email=$row["email"] ;
+
+    while ($row = $result->fetch_assoc()) {
+        $prenom = $row["prenom"];
+        $nom = $row["nom"];
+        $email = $row["email"];
     }
-                                        
-    
+} else {
+    header('Location: login.php');
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -56,7 +57,12 @@ if (isset($_SESSION['username'])){
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
-
+    <style type="text/css">
+        div.main-content {
+            background-color: #ee5522;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23d23d09' fill-opacity='0.6'%3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23a)' points='100 30 0 0 200 0'/%3E%3Cpolygon fill='url(%23b)' points='100 100 0 130 0 100 200 100 200 130'/%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
 </head>
 
 <body class="animsition">
@@ -80,25 +86,25 @@ if (isset($_SESSION['username'])){
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                                
-                         <li> 
-                             <a href="index.php">
+
+                        <li>
+                            <a href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                              
-                        
+
+
                         <li>
                             <a href="table.php">
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
-                        
+
                         <li>
                             <a href="calendar.php">
                                 <i class="fas fa-calendar-alt"></i>Calendar</a>
                         </li>
-                        
-                       
-                     
+
+
+
                     </ul>
                 </div>
             </nav>
@@ -116,23 +122,23 @@ if (isset($_SESSION['username'])){
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
 
-                         <li> 
-                             <a href="index.php">
+                        <li>
+                            <a href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        
+
                         <li>
                             <a href="table.php">
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
-                        
+
                         <li>
                             <a href="calendar.php">
                                 <i class="fas fa-calendar-alt"></i>Calendar</a>
                         </li>
-                        
-                       
-                       
+
+
+
                     </ul>
                 </nav>
             </div>
@@ -153,7 +159,7 @@ if (isset($_SESSION['username'])){
                                 </button>
                             </form>
                             <div class="header-button">
-                             
+
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
@@ -161,11 +167,11 @@ if (isset($_SESSION['username'])){
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">
-                                                                <?php
-                                                                
-                                                                echo $prenom." ".$nom;
-                                                                
-                                                                ?>
+                                                <?php
+
+                                                echo $prenom . " " . $nom;
+
+                                                ?>
                                             </a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
@@ -178,29 +184,29 @@ if (isset($_SESSION['username'])){
                                                 <div class="content">
                                                     <h5 class="name">
                                                         <a href="#">
-                                                               <?php
-                                                                
-                                                                echo $prenom." ".$nom;
-                                                                
-                                                                ?>
+                                                            <?php
+
+                                                            echo $prenom . " " . $nom;
+
+                                                            ?>
                                                         </a>
                                                     </h5>
                                                     <span class="email">
-                                                                <?php
-                                                                
-                                                                echo $email;
-                                                                
-                                                                ?>
+                                                        <?php
+
+                                                        echo $email;
+
+                                                        ?>
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
-                                                
+
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
                                                         <i class="zmdi zmdi-settings"></i>Setting</a>
                                                 </div>
-                                               
+
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 <a href="logout.php">
@@ -216,66 +222,66 @@ if (isset($_SESSION['username'])){
             </header>
             <!-- HEADER DESKTOP-->
 
-                    <!-- MAIN CONTENT-->
+            <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <?php
-$link = mysqli_connect("localhost", "root", "", "ipdl");
-  
-if($link === false){
-    die("ERROR: Could not connect. " 
-                . mysqli_connect_error());
-}
-    $sql = "SELECT ID_cours,nom,date_debut,date_fin,volumeHoraire,volumeHoraireRestant FROM `cours`";
-  
-if($res = mysqli_query($link, $sql)){
-    if(mysqli_num_rows($res) > 0){
-        echo                    "<div class='row'>";
-        echo                    "<div class='col-lg-9'>";
-        echo                    "<h2 class='title-1 m-b-25'>COURS</h2>";
-        echo                    "<div class='table-responsive table--no-card m-b-40'>";
-        echo "<table class='table table-borderless table-striped table-earning'>";
-                   echo    "<thead>";
+                        $link = mysqli_connect("localhost", "root", "", "ipdl");
 
-            echo "<tr>";
-            echo "<th>ID_cours</th>";
-            echo "<th>nom</th>";
-            echo "<th>date_debut</th>";
-            echo "<th class='text-right'>date_fin</th>";
-            echo "<th class='text-right'>volumeHoraire</th>";
-            echo "<th class='text-right'>volumeHoraireRestant</th>";
-            echo "</tr>";
-            echo "</thead>";
-            echo "<tbody>";
-        while($row = mysqli_fetch_array($res)){
-            echo "<tr>";
-                echo "<td>" . $row['ID_cours'] . "</td>";
-                echo "<td>" . $row['nom'] . "</td>";
-                echo "<td>" . $row['date_debut'] . "</td>";
-                echo "<td class='text-right'>" . $row['date_fin'] . "</td>";
-                echo "<td class='text-right'>" . $row['volumeHoraire'] . "</td>";
-                echo "<td class='text-right'>" . $row['volumeHoraireRestant'] . "</td>";
-            echo "</tr>";
-        }
-                    echo "</tbody>";
-                    echo "</table>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</div>";
-        mysqli_free_result($res);
-    } else{
-        echo "No matching records are found.";
-    }
-} else{
-    echo "ERROR: Could not able to execute $sql. "
+                        if ($link === false) {
+                            die("ERROR: Could not connect. "
+                                . mysqli_connect_error());
+                        }
+                        $sql = "SELECT ID_cours,nom,date_debut,date_fin,volumeHoraire,volumeHoraireRestant FROM `cours`";
+
+                        if ($res = mysqli_query($link, $sql)) {
+                            if (mysqli_num_rows($res) > 0) {
+                                echo                    "<div class='row'>";
+                                echo                    "<div class='col-lg-9'>";
+                                echo                    "<h2 class='title-1 m-b-25'>COURS</h2>";
+                                echo                    "<div class='table-responsive table--no-card m-b-40'>";
+                                echo "<table class='table table-borderless table-striped table-earning'>";
+                                echo    "<thead>";
+
+                                echo "<tr>";
+                                echo "<th>ID_cours</th>";
+                                echo "<th>nom</th>";
+                                echo "<th>date_debut</th>";
+                                echo "<th class='text-right'>date_fin</th>";
+                                echo "<th class='text-right'>volumeHoraire</th>";
+                                echo "<th class='text-right'>volumeHoraireRestant</th>";
+                                echo "</tr>";
+                                echo "</thead>";
+                                echo "<tbody>";
+                                while ($row = mysqli_fetch_array($res)) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row['ID_cours'] . "</td>";
+                                    echo "<td>" . $row['nom'] . "</td>";
+                                    echo "<td>" . $row['date_debut'] . "</td>";
+                                    echo "<td class='text-right'>" . $row['date_fin'] . "</td>";
+                                    echo "<td class='text-right'>" . $row['volumeHoraire'] . "</td>";
+                                    echo "<td class='text-right'>" . $row['volumeHoraireRestant'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</tbody>";
+                                echo "</table>";
+                                echo "</div>";
+                                echo "</div>";
+                                echo "</div>";
+                                mysqli_free_result($res);
+                            } else {
+                                echo "No matching records are found.";
+                            }
+                        } else {
+                            echo "ERROR: Could not able to execute $sql. "
                                 . mysqli_error($link);
-}
-mysqli_close($link);
+                        }
+                        mysqli_close($link);
 
 
-?>
-                       
+                        ?>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- DATA TABLE -->
@@ -316,98 +322,94 @@ mysqli_close($link);
                                 </div>
 
 
-                              
-
- <?php
-$link = mysqli_connect("localhost", "root", "", "ipdl");
-  
-if($link === false){
-    die("ERROR: Could not connect. " 
-                . mysqli_connect_error());
-}
-    $sql = "SELECT nom,date_debut,date_fin,statut,volumeHoraire,volumeHoraireRestant FROM `cours`";
-  
-if($res = mysqli_query($link, $sql)){
-    if(mysqli_num_rows($res) > 0){
-       
-        echo                    "<div class='table-responsive table-responsive-data2'>";
-        echo "<table class='table table-data2'>";
-                   echo    "<thead>";
-
-            echo "<tr>";
-            echo       "<th>";
-                       echo    "<label class='au-checkbox'>";
-                         echo  "<input type='checkbox'>";
-                         echo  "<span class='au-checkmark'></span>";
-                          echo  "</label>";
-                          echo   "</th>";
-
-            echo "<th>nom</th>";
-            echo "<th>date_debut</th>";
-            echo "<th >date_fin</th>";
-            echo "<th >volumeHoraire</th>";
-            echo "<th >statut</th>";
-            echo "<th >volumeHoraireRestant</th>";
-            echo "</tr>";
-            echo "</thead>";
-            echo "<tbody>";
-        while($row = mysqli_fetch_array($res)){
-                 echo                        "  <tr class='tr-shadow'>";
-                echo                        "  <td>";
-                echo                        "  <label class='au-checkbox'>";
-                echo                        "<input type='checkbox'>";
-                   echo                        " <span class='au-checkmark'></span>";
-                 echo                        " </label>";
-                 echo                        "  </td>";
-                 echo "<td>" . $row['nom'] . "</td>";
-                echo "<td>" . $row['date_debut'] . "</td>";
-                echo "<td >" . $row['date_fin'] . "</td>";
-                echo "<td >" . $row['volumeHoraire'] . "</td>";
-                echo "<td >" . $row['statut'] . "</td>";
-                echo "<td >" . $row['volumeHoraireRestant'] . "</td>";
-               echo " <td>";
-                                                   echo " <div class='table-data-feature'>";
-                                                       echo " <button class='item' data-toggle='tooltip' data-placement='top' title='Send'>";
-                                                            echo "<i class='zmdi zmdi-mail-send'></i>";
-                                                        echo "</button>";
-                                                       echo " <button class='item' data-toggle='tooltip' data-placement='top' title='Edit'>";
-                                                           echo " <i class='zmdi zmdi-edit'></i>";
-                                                        echo "</button>";
-                                                       echo " <button class='item' data-toggle='tooltip' data-placement='top' title='Delete'>";
-                                                           echo " <i class='zmdi zmdi-delete'></i>";
-                                                        echo "</button>";
-                                                       echo " <button class='item' data-toggle='tooltip' data-placement='top' title='More'>";
-                                                           echo " <i class='zmdi zmdi-more'></i>";
-                                                        echo "</button>";
-                                                    echo "</div>";
-                                                echo "</td>";
-                 echo                        "  </tr>";
-               
-                
-               
-           
-        }
-                    echo "</tbody>";
-                    echo "</table>";
-                    echo "</div>";
-                   
-        mysqli_free_result($res);
-    } else{
-        echo "No matching records are found.";
-    }
-} else{
-    echo "ERROR: Could not able to execute $sql. "
-                                . mysqli_error($link);
-}
-mysqli_close($link);
 
 
-?>
+                                <?php
+                                $link = mysqli_connect("localhost", "root", "", "ipdl");
+
+                                if ($link === false) {
+                                    die("ERROR: Could not connect. "
+                                        . mysqli_connect_error());
+                                }
+                                $sql = "SELECT nom,date_debut,date_fin,statut,volumeHoraire,volumeHoraireRestant FROM `cours`";
+
+                                if ($res = mysqli_query($link, $sql)) {
+                                    if (mysqli_num_rows($res) > 0) {
+
+                                        echo                    "<div class='table-responsive table-responsive-data2'>";
+                                        echo "<table class='table table-data2'>";
+                                        echo    "<thead>";
+
+                                        echo "<tr>";
+                                        echo       "<th>";
+                                        echo    "<label class='au-checkbox'>";
+                                        echo  "<input type='checkbox'>";
+                                        echo  "<span class='au-checkmark'></span>";
+                                        echo  "</label>";
+                                        echo   "</th>";
+
+                                        echo "<th>nom</th>";
+                                        echo "<th>date_debut</th>";
+                                        echo "<th >date_fin</th>";
+                                        echo "<th >volumeHoraire</th>";
+                                        echo "<th >statut</th>";
+                                        echo "<th >volumeHoraireRestant</th>";
+                                        echo "</tr>";
+                                        echo "</thead>";
+                                        echo "<tbody>";
+                                        while ($row = mysqli_fetch_array($res)) {
+                                            echo                        "  <tr class='tr-shadow'>";
+                                            echo                        "  <td>";
+                                            echo                        "  <label class='au-checkbox'>";
+                                            echo                        "<input type='checkbox'>";
+                                            echo                        " <span class='au-checkmark'></span>";
+                                            echo                        " </label>";
+                                            echo                        "  </td>";
+                                            echo "<td>" . $row['nom'] . "</td>";
+                                            echo "<td>" . $row['date_debut'] . "</td>";
+                                            echo "<td >" . $row['date_fin'] . "</td>";
+                                            echo "<td >" . $row['volumeHoraire'] . "</td>";
+                                            echo "<td >" . $row['statut'] . "</td>";
+                                            echo "<td >" . $row['volumeHoraireRestant'] . "</td>";
+                                            echo " <td>";
+                                            echo " <div class='table-data-feature'>";
+                                            echo " <button class='item' data-toggle='tooltip' data-placement='top' title='Send'>";
+                                            echo "<i class='zmdi zmdi-mail-send'></i>";
+                                            echo "</button>";
+                                            echo " <button class='item' data-toggle='tooltip' data-placement='top' title='Edit'>";
+                                            echo " <i class='zmdi zmdi-edit'></i>";
+                                            echo "</button>";
+                                            echo " <button class='item' data-toggle='tooltip' data-placement='top' title='Delete'>";
+                                            echo " <i class='zmdi zmdi-delete'></i>";
+                                            echo "</button>";
+                                            echo " <button class='item' data-toggle='tooltip' data-placement='top' title='More'>";
+                                            echo " <i class='zmdi zmdi-more'></i>";
+                                            echo "</button>";
+                                            echo "</div>";
+                                            echo "</td>";
+                                            echo                        "  </tr>";
+                                        }
+                                        echo "</tbody>";
+                                        echo "</table>";
+                                        echo "</div>";
+
+                                        mysqli_free_result($res);
+                                    } else {
+                                        echo "No matching records are found.";
+                                    }
+                                } else {
+                                    echo "ERROR: Could not able to execute $sql. "
+                                        . mysqli_error($link);
+                                }
+                                mysqli_close($link);
+
+
+                                ?>
 
                                 <!-- END DATA TABLE -->
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
@@ -454,6 +456,4 @@ mysqli_close($link);
 </html>
 
 
-
-
-        
+<!-- end document-->
