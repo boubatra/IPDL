@@ -52,7 +52,7 @@ if (isset($_REQUEST['username'], $_REQUEST['nom'], $_REQUEST['prenom'], $_REQUES
     $res = mysqli_query($conn, $query);
 
     if($res){
-       header('location: login.php.php');
+       header('location: login.php');
     }
 }else{
 ?>

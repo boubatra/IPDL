@@ -15,11 +15,13 @@ if (isset($_POST['username'])) {
         if ($user['profile'] == "admin") {
             header("Location: admin/index.php");
         }
-
-        if ($user['profile'] != "admin") {
-
-            header('location: index.php');
-        } else {
+        if ($user['profile'] == "professeur") {
+            header("Location: professeur/index.php");
+        }
+        if ($user['profile'] == "eleve") {
+            header("Location: eleve/index.php");
+        }
+         else {
             $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
         }
     }

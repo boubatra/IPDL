@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('config.php');
+require('../config.php');
 
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
@@ -18,7 +18,7 @@ if (isset($_SESSION['username'])) {
         $email = $row["email"];
     }
 } else {
-    header('Location: login.php');
+    header('Location: ../login.php');
 }
 
 

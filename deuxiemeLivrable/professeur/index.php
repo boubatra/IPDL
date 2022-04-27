@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('config.php');
+require('../config.php');
 
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
@@ -18,7 +18,7 @@ if (isset($_SESSION['username'])) {
         $email = $row["email"];
     }
 } else {
-    header('Location: login.php');
+    header('Location: ../login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -416,16 +416,20 @@ if (isset($_SESSION['username'])) {
                                                     </select>
 
                                                     <?php
-                                                    $sql = "SELECT ID_cours,volumeHoraire,volumeHoraireRestant FROM `cours`";
+                                                    $sql = "SELECT ID_cours,nom,volumeHoraire,volumeHoraireRestant FROM `cours`";
                                                     $result = $conn->query($sql);
                                                     if ($result->num_rows > 0) {
                                                         $row = $result->fetch_assoc();
                                                         echo "<input type='hidden' name='id_cours' value='" . $row['ID_cours'] . "'>";
 
-
-                                                            $row['volumeHoraireRestant'] = $row['volumeHoraireRestant'] - 2;
-                                                            $sql = "UPDATE `cours` SET `volumeHoraireRestant`= '" . $row['volumeHoraireRestant'] . "' WHERE `ID_cours` = '" . $row['ID_cours'] . "'";
-                                                            $conn->query($sql);
+                                                            if ($row['volumeHoraireRestant'] > 0) {
+                                                                 $row['volumeHoraireRestant'] = $row['volumeHoraireRestant'] - 2;
+                                                                $sql = "UPDATE `cours` SET `volumeHoraireRestant`= '" . $row['volumeHoraireRestant'] . "' WHERE `ID_cours` = '" . $row['ID_cours'] . "'";
+                                                                $conn->query($sql);
+                                                            }
+                                                            else {
+                                                                echo "Le cours de" . $row['nom'] . "est termine";
+                                                            }
                                                         
                                                     } ?>
 
