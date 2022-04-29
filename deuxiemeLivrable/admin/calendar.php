@@ -107,10 +107,7 @@ else{
                         </li>
                               
                         
-                        <li>
-                            <a href="table.php">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
+                       
                         
                         <li>
                             <a href="calendar.php">
@@ -121,6 +118,11 @@ else{
                         <li> 
                              <a href="manage.php">
                                 <i class="fas fa-user"></i>Manage users</a>
+                        </li>
+
+                        <li> 
+                             <a href="manage_cours.php">
+                                <i class="fas fa-book"></i>Manage course</a>
                         </li>
 
                         
@@ -136,7 +138,7 @@ else{
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="../images/icon/logo-esp.jpg" alt="" />
+                    <img src="../images/icon/logo-esp.png" alt="" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -148,10 +150,7 @@ else{
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         
-                        <li>
-                            <a href="table.php">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
+                       
                         
                         <li>
                             <a href="calendar.php">
@@ -162,6 +161,11 @@ else{
                        <li> 
                              <a href="manage.php">
                                 <i class="fas fa-user"></i>Manage users</a>
+                        </li>
+
+                        <li> 
+                             <a href="manage_cours.php">
+                                <i class="fas fa-book"></i>Manage course</a>
                         </li>
                         
                        
