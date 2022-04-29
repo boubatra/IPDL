@@ -49,14 +49,14 @@ create table liste_cours ( ID_liste_cours int primary key not null auto_incremen
     FOREIGN KEY (ID_cours) REFERENCES cours(ID_cours));
 
 
-create table classe ( ID_classe int primary key not null auto_increment,
+create table classe ( 
+    ID_classe int primary key not null auto_increment,
     nom varchar(50),
     ID_prof int,
     ID_liste_etudiant int,
-    ID_liste_absence int,
-    FOREIGN KEY (ID_prof) REFERENCES professeur(ID_prof)
+    FOREIGN KEY (ID_prof) REFERENCES professeur(ID_prof),
     FOREIGN KEY (ID_liste_etudiant) REFERENCES liste_etudiant(ID_liste_etudiant)
-    FOREIGN KEY (ID_liste_etudiant) REFERENCES liste_absence(ID_liste_absence));
+    );
 
 create table liste_classe ( ID_liste_classe int primary key not null auto_increment,
     ID_classe int,
@@ -70,10 +70,13 @@ create table matiere (
     FOREIGN KEY (ID_prof) REFERENCES professeur(ID_prof),
     FOREIGN KEY (ID_classe) REFERENCES classe(ID_classe));
 
-create table salle ( ID_salle int primary key not null auto_increment,
+create table salle ( 
+    ID_salle int primary key not null auto_increment,
     nom varchar(50),
     capacite int,
-    statut boolean);
+    ID_cours int,
+    statut boolean,
+    FOREIGN KEY (ID_cours) REFERENCES cours(ID_cours));
 
 create table liste_salle ( ID_liste_salle int primary key not null auto_increment,
     ID_salle int,
@@ -127,18 +130,18 @@ insert into professeur(ID_user) values(2);
 insert into etudiant(ID_user) values(3);
 insert into surveillant(ID_user) values(4);
 
-insert into cours(nom, date_debut, date_fin, volumeHoraire,volumeHoraireRestant, ID_prof) values('Modelisation', '08:00:00', '10:00:00', 30,18, 1);
-insert into cours(nom, date_debut, date_fin, volumeHoraire,volumeHoraireRestant, ID_prof) values('Programmation', '10:00:00', '12:00:00', 20,20, 1);
-insert into cours(nom, date_debut, date_fin, volumeHoraire,volumeHoraireRestant, ID_prof) values('Base de données', '80:00:00', '10:00:00', 24,4, 1);
-insert into cours(nom, date_debut, date_fin, volumeHoraire,volumeHoraireRestant, ID_prof) values('Reseau', '14:30:00', '16:30:00', 56,48, 1);
+insert into cours(nom, heure_debut, heure_fin, volumeHoraire,volumeHoraireRestant, ID_prof) values('Modelisation', '08:00:00', '10:00:00', 30,18, 1);
+insert into cours(nom, heure_debut, heure_fin, volumeHoraire,volumeHoraireRestant, ID_prof) values('Programmation', '10:00:00', '12:00:00', 20,20, 1);
+insert into cours(nom, heure_debut, heure_fin, volumeHoraire,volumeHoraireRestant, ID_prof) values('Base de données', '80:00:00', '10:00:00', 24,4, 1);
+insert into cours(nom, heure_debut, heure_fin, volumeHoraire,volumeHoraireRestant, ID_prof) values('Reseau', '14:30:00', '16:30:00', 56,48, 1);
 
 insert into classe(nom, ID_prof) values('Master 1 GLSI', 1);
 insert into classe(nom, ID_prof) values('Master 2 GLSI', 1);
 insert into classe(nom, ID_prof) values('LICENCE 3 GLSI', 1);
 
-insert into salle (nom, capacite, ID_prof) values('Salle 1', 20, 1);
-insert into salle (nom, capacite, ID_prof) values('Salle 2', 30, 1);
-insert into salle (nom, capacite, ID_prof) values('Salle 3', 40, 1);
+insert into salle (nom, capacite, ID_cours) values('Salle 1', 20, 1);
+insert into salle (nom, capacite, ID_cours) values('Salle 2', 30, 1);
+insert into salle (nom, capacite, ID_cours) values('Salle 3', 40, 1);
 
 insert into liste_etudiant values(1, 1);
 
@@ -153,10 +156,10 @@ insert into liste_classe values(1, 1);
 insert into liste_classe values(2, 1);
 insert into liste_classe values(3, 1);
 
-insert into emploi_du_temps (ID_cours, ID_salle) values(1, 1);
-insert into emploi_du_temps (ID_cours, ID_salle) values(2, 2);
-insert into emploi_du_temps (ID_cours, ID_salle) values(3, 3);
+insert into emploi_du_temps_classe values (1, 1, 1);
+insert into emploi_du_temps_classe values (2, 1, 2);
 
-insert into pointer (ID_cours, ID_classe) values(1, 1);
-insert into pointer (ID_cours, ID_classe) values(2, 2);
-insert into pointer (ID_cours, ID_classe) values(3, 3);
+insert into emploi_du_temps_professeur values (1, 1, 1, '8:00:00-10:00:00');
+insert into emploi_du_temps_professeur values (2, 1, 2, '10:00:00-12:00:00');
+insert into emploi_du_temps_professeur values (3, 1, 3, '14:30:00-16:30:00');
+

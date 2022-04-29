@@ -236,7 +236,7 @@ if($link === false){
     die("ERROR: Could not connect. " 
                 . mysqli_connect_error());
 }
-    $sql = "SELECT ID_cours,nom,date_debut,date_fin,volumeHoraire,volumeHoraireRestant FROM `cours`";
+    $sql = "SELECT ID_cours,nom,heure_debut,heure_fin,volumeHoraire,volumeHoraireRestant FROM `cours`";
   
 if($res = mysqli_query($link, $sql)){
     if(mysqli_num_rows($res) > 0){
@@ -250,8 +250,8 @@ if($res = mysqli_query($link, $sql)){
             echo "<tr>";
             echo "<th>ID_cours</th>";
             echo "<th>nom</th>";
-            echo "<th>date_debut</th>";
-            echo "<th class='text-right'>date_fin</th>";
+            echo "<th>heure_debut</th>";
+            echo "<th class='text-right'>heure_fin</th>";
             echo "<th class='text-right'>volumeHoraire</th>";
             echo "<th class='text-right'>volumeHoraireRestant</th>";
             echo "</tr>";
@@ -261,8 +261,8 @@ if($res = mysqli_query($link, $sql)){
             echo "<tr>";
                 echo "<td>" . $row['ID_cours'] . "</td>";
                 echo "<td>" . $row['nom'] . "</td>";
-                echo "<td>" . $row['date_debut'] . "</td>";
-                echo "<td class='text-right'>" . $row['date_fin'] . "</td>";
+                echo "<td>" . $row['heure_debut'] . "</td>";
+                echo "<td class='text-right'>" . $row['heure_fin'] . "</td>";
                 echo "<td class='text-right'>" . $row['volumeHoraire'] . "</td>";
                 echo "<td class='text-right'>" . $row['volumeHoraireRestant'] . "</td>";
             echo "</tr>";
@@ -334,7 +334,7 @@ if($link === false){
     die("ERROR: Could not connect. " 
                 . mysqli_connect_error());
 }
-    $sql = "SELECT nom,date_debut,date_fin,statut,volumeHoraire,volumeHoraireRestant FROM `cours`";
+    $sql = "SELECT nom,heure_debut,heure_fin,statut,volumeHoraire,volumeHoraireRestant FROM `cours`";
   
 if($res = mysqli_query($link, $sql)){
     if(mysqli_num_rows($res) > 0){
@@ -352,8 +352,8 @@ if($res = mysqli_query($link, $sql)){
                           echo   "</th>";
 
             echo "<th>nom</th>";
-            echo "<th>date_debut</th>";
-            echo "<th >date_fin</th>";
+            echo "<th>heure_debut</th>";
+            echo "<th >heure_fin</th>";
             echo "<th >volumeHoraire</th>";
             echo "<th >statut</th>";
             echo "<th >volumeHoraireRestant</th>";
@@ -369,8 +369,8 @@ if($res = mysqli_query($link, $sql)){
                  echo                        " </label>";
                  echo                        "  </td>";
                  echo "<td>" . $row['nom'] . "</td>";
-                echo "<td>" . $row['date_debut'] . "</td>";
-                echo "<td >" . $row['date_fin'] . "</td>";
+                echo "<td>" . $row['heure_debut'] . "</td>";
+                echo "<td >" . $row['heure_fin'] . "</td>";
                 echo "<td >" . $row['volumeHoraire'] . "</td>";
                 echo "<td >" . $row['statut'] . "</td>";
                 echo "<td >" . $row['volumeHoraireRestant'] . "</td>";

@@ -38,25 +38,25 @@ if (isset($_SESSION['username'])) {
     <title>TABLE</title>
 
     <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="../css/font-face.css" rel="stylesheet" media="all">
+    <link href="../vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
-    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="../vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="css/theme.css" rel="stylesheet" media="all">
+    <link href="../css/theme.css" rel="stylesheet" media="all">
     <style type="text/css">
         div.main-content {
             background-color: #ee5522;
@@ -73,7 +73,7 @@ if (isset($_SESSION['username'])) {
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.php">
-                            <img src="images/icon/logo-esp.jpg" alt="" />
+                            <img src="../images/icon/logo-esp.jpg" alt="" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -115,7 +115,7 @@ if (isset($_SESSION['username'])) {
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/logo-esp.jpg" alt="" />
+                    <img src="../images/icon/logo-esp.jpg" alt="" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -163,7 +163,7 @@ if (isset($_SESSION['username'])) {
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/images.png" alt="#" />
+                                            <img src="../images/icon/images.png" alt="#" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">
@@ -178,7 +178,7 @@ if (isset($_SESSION['username'])) {
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/images.png" alt="#" />
+                                                        <img src="../images/icon/images.png" alt="#" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -209,7 +209,7 @@ if (isset($_SESSION['username'])) {
 
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="logout.php">
+                                                <a href="../logout.php">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
@@ -233,7 +233,7 @@ if (isset($_SESSION['username'])) {
                             die("ERROR: Could not connect. "
                                 . mysqli_connect_error());
                         }
-                        $sql = "SELECT ID_cours,nom,date_debut,date_fin,volumeHoraire,volumeHoraireRestant FROM `cours`";
+                        $sql = "SELECT ID_cours,nom,heure_debut,heure_fin,volumeHoraire,volumeHoraireRestant FROM `cours`";
 
                         if ($res = mysqli_query($link, $sql)) {
                             if (mysqli_num_rows($res) > 0) {
@@ -247,8 +247,8 @@ if (isset($_SESSION['username'])) {
                                 echo "<tr>";
                                 echo "<th>ID_cours</th>";
                                 echo "<th>nom</th>";
-                                echo "<th>date_debut</th>";
-                                echo "<th class='text-right'>date_fin</th>";
+                                echo "<th>heure_debut</th>";
+                                echo "<th class='text-right'>heure_fin</th>";
                                 echo "<th class='text-right'>volumeHoraire</th>";
                                 echo "<th class='text-right'>volumeHoraireRestant</th>";
                                 echo "</tr>";
@@ -258,8 +258,8 @@ if (isset($_SESSION['username'])) {
                                     echo "<tr>";
                                     echo "<td>" . $row['ID_cours'] . "</td>";
                                     echo "<td>" . $row['nom'] . "</td>";
-                                    echo "<td>" . $row['date_debut'] . "</td>";
-                                    echo "<td class='text-right'>" . $row['date_fin'] . "</td>";
+                                    echo "<td>" . $row['heure_debut'] . "</td>";
+                                    echo "<td class='text-right'>" . $row['heure_fin'] . "</td>";
                                     echo "<td class='text-right'>" . $row['volumeHoraire'] . "</td>";
                                     echo "<td class='text-right'>" . $row['volumeHoraireRestant'] . "</td>";
                                     echo "</tr>";
@@ -331,7 +331,7 @@ if (isset($_SESSION['username'])) {
                                     die("ERROR: Could not connect. "
                                         . mysqli_connect_error());
                                 }
-                                $sql = "SELECT nom,date_debut,date_fin,statut,volumeHoraire,volumeHoraireRestant FROM `cours`";
+                                $sql = "SELECT nom,heure_debut,heure_fin,statut,volumeHoraire,volumeHoraireRestant FROM `cours`";
 
                                 if ($res = mysqli_query($link, $sql)) {
                                     if (mysqli_num_rows($res) > 0) {
@@ -349,8 +349,8 @@ if (isset($_SESSION['username'])) {
                                         echo   "</th>";
 
                                         echo "<th>nom</th>";
-                                        echo "<th>date_debut</th>";
-                                        echo "<th >date_fin</th>";
+                                        echo "<th>heure_debut</th>";
+                                        echo "<th >heure_fin</th>";
                                         echo "<th >volumeHoraire</th>";
                                         echo "<th >statut</th>";
                                         echo "<th >volumeHoraireRestant</th>";
@@ -366,8 +366,8 @@ if (isset($_SESSION['username'])) {
                                             echo                        " </label>";
                                             echo                        "  </td>";
                                             echo "<td>" . $row['nom'] . "</td>";
-                                            echo "<td>" . $row['date_debut'] . "</td>";
-                                            echo "<td >" . $row['date_fin'] . "</td>";
+                                            echo "<td>" . $row['heure_debut'] . "</td>";
+                                            echo "<td >" . $row['heure_fin'] . "</td>";
                                             echo "<td >" . $row['volumeHoraire'] . "</td>";
                                             echo "<td >" . $row['statut'] . "</td>";
                                             echo "<td >" . $row['volumeHoraireRestant'] . "</td>";
@@ -428,28 +428,28 @@ if (isset($_SESSION['username'])) {
     </div>
 
     <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <script src="../vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
     <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
+    <script src="../vendor/slick/slick.min.js">
     </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    <script src="../vendor/wow/wow.min.js"></script>
+    <script src="../vendor/animsition/animsition.min.js"></script>
+    <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
     </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
+    <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../vendor/counter-up/jquery.counterup.min.js">
     </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
+    <script src="../vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="../vendor/select2/select2.min.js">
     </script>
 
     <!-- Main JS-->
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
 
 </body>
 
